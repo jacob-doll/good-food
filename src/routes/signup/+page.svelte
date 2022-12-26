@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
 	import { pb } from '$lib/store';
 
 	let username: string;
@@ -47,4 +47,4 @@
 		bind:value={confirmPassword}
 	/>
 	<button class="btn btn-primary" type="button" on:click={signUp}>Sign-Up</button>
-</form>
+</form> -->
