@@ -5,6 +5,6 @@ export const pb = new PocketBase("https://jacob-doll.com");
 
 export const currentUser = writable(pb.authStore.model);
 
-pb.authStore.onChange(() => {
+pb.authStore.onChange(async () => {
     currentUser.set(pb.authStore.model);
 });
