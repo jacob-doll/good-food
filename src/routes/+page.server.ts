@@ -1,7 +1,7 @@
 import { redirect } from '@sveltejs/kit';
-import type { LayoutServerLoadEvent } from './$types';
+import type { PageServerLoadEvent } from './$types';
 
-export async function load(event: LayoutServerLoadEvent) {
+export async function load(event: PageServerLoadEvent) {
     if (!event.locals.user) {
         throw redirect(302, '/login')
     }

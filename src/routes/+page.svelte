@@ -1,22 +1,6 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 
-	// import { currentUser, pb } from '$lib/store';
-	// import { onMount } from 'svelte';
-
-	// interface Goals {
-	// 	calories: number;
-	// 	protein: number;
-	// 	carbs: number;
-	// 	fat: number;
-	// }
-
-	// let goals: Goals;
-
-	// onMount(async () => {
-	// 	goals = await pb.collection('goals').getFirstListItem(`user="${$currentUser?.id}"`);
-	// });
-
 	export let data: PageData;
 </script>
 
@@ -29,9 +13,9 @@
 			<h2 class="card-title">Macros</h2>
 			<p>Protein</p>
 			<progress class="progress progress-primary w-full " value="10" max={data.goals?.protein} />
-			<p>Protein</p>
+			<p>Carbs</p>
 			<progress class="progress progress-primary w-full " value="10" max={data.goals?.carbs} />
-			<p>Protein</p>
+			<p>Fat</p>
 			<progress class="progress progress-primary w-full " value="10" max={data.goals?.fat} />
 		</div>
 	</div>

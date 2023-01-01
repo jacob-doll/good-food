@@ -5,10 +5,10 @@ export const actions: Actions = {
     default: async (event) => {
         const body = Object.fromEntries(await event.request.formData());
 
-        let username = body.username.toString();
-        let email = body.email.toString();
-        let password = body.password.toString();
-        let passwordConfirm = body.passwordConfirm.toString();
+        const username = body.username.toString();
+        const email = body.email.toString();
+        const password = body.password.toString();
+        const passwordConfirm = body.passwordConfirm.toString();
 
         try {
             const user = await event.locals.pb.collection('users').create({
@@ -20,6 +20,7 @@ export const actions: Actions = {
             await event.locals.pb.collection('goals').create({
                 user: user.id
             });
+            await event.locals.pb.collection('users').requestVerification(email);
         } catch (err) {
             throw error(500, 'Something went wrong logging in');
         }

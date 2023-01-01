@@ -1,29 +1,25 @@
-<!-- <script lang="ts">
-	import { currentUser, pb } from '$lib/store';
+<script lang="ts">
+	import type { PageData } from './$types';
 
-	let name: string = $currentUser?.name;
-
-	async function updateProfile() {
-		if (!$currentUser) return;
-		await pb.collection('users').update($currentUser.id, {
-			name
-		});
-	}
+	export let data: PageData;
 </script>
 
-<form on:submit|preventDefault class="form-control gap-2 pt-4 px-4 md:w-1/2 md:mx-auto">
-	<h1 class="text-3xl">Profile: {$currentUser?.username}</h1>
+<div class="w-full">
+	<div class="card w-full bg-neutral shadow-xl">
+		<div class="card-body">
+			<h2 class="card-title">Goals</h2>
 
-	<span>Name</span>
-	<input
-		type="text"
-		placeholder={$currentUser?.name}
-		class="input input-bordered"
-		bind:value={name}
-	/>
-
-	<span>Avatar</span>
-	<input type="file" class="file-input w-full max-w-xs" />
-
-	<button class="btn btn-primary" type="button" on:click={updateProfile}>Update</button>
-</form> -->
+			<form method="POST" class="form-control gap-2">
+				<p>Calories</p>
+				<input class="input input-bordered" name="calories" value={data.goals?.calories} />
+				<p>Protein</p>
+				<input class="input input-bordered" name="protein" value={data.goals?.protein} />
+				<p>Carbs</p>
+				<input class="input input-bordered" name="carbs" value={data.goals?.carbs} />
+				<p>Fat</p>
+				<input class="input input-bordered" name="fat" value={data.goals?.fat} />
+				<button class="btn btn-primary" type="submit">Save</button>
+			</form>
+		</div>
+	</div>
+</div>
