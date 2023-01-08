@@ -9,11 +9,53 @@
 	}
 </script>
 
-<div class="navbar bg-primary">
+<div class="navbar bg-primary gap-2 sticky top-0 z-50">
 	<div class="flex-1">
 		<a href="/" class="btn btn-ghost normal-case text-xl">Good Food</a>
 	</div>
 	{#if data.user}
+		<form action="/search" class="hidden md:block form-control flex-none">
+			<div class="input-group">
+				<input
+					type="text"
+					name="query"
+					placeholder="Search…"
+					class="input input-bordered hidden md:block"
+				/>
+				<button type="submit" class="btn btn-square">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						fill="none"
+						viewBox="0 0 24 24"
+						stroke-width="1.5"
+						stroke="currentColor"
+						class="w-6 h-6"
+					>
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+						/>
+					</svg>
+				</button>
+			</div>
+		</form>
+		<a href="/search" class="md:hidden btn btn-circle flex-none">
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				fill="none"
+				viewBox="0 0 24 24"
+				stroke-width="1.5"
+				stroke="currentColor"
+				class="w-6 h-6"
+			>
+				<path
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+				/>
+			</svg>
+		</a>
 		<div class="flex-none gap-2">
 			<div class="dropdown dropdown-end">
 				<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
@@ -76,6 +118,6 @@
 	{/if}
 </div>
 
-<div class="h-screen container mx-auto px-4 md:px-0">
+<div class="container mx-auto">
 	<slot />
 </div>
