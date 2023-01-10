@@ -1,32 +1,40 @@
-import type { SearchResult } from '$lib/foodApi';
-import type { PageServerLoadEvent } from './$types';
+import type { FoodItem } from '$lib/types';
+import { redirect } from '@sveltejs/kit';
+import type { ClientResponseError } from 'pocketbase';
+import type { Actions, PageServerLoadEvent } from './$types';
 
 export async function load(event: PageServerLoadEvent) {
-    let query = event.url.searchParams.get('query')?.toString();
-    let page = event.url.searchParams.get('page')?.toString();
-    let pageNumber = page ? parseInt(page) : 1;
+    const { url } = event;
 
-    const response = await fetch('https://api.nal.usda.gov/fdc/v1/foods/search?api_key=VnlMm2qUAOCziNDke8cxXwHoTVAX6Q1g7fxgdAN9', {
-        method: 'POST',
-        headers: {
-            'accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            "query": query,
-            "pageSize": 25,
-            "pageNumber": pageNumber,
-            "sortOrder": "asc",
-            "dataType": [
-                "Branded",
-            ],
-        })
-    });
-
-    let data: SearchResult = await response.json();
+    const addEntry = url.searchParams.get('addEntry')?.toString();
+    const journal = url.searchParams.get('journal')?.toString();
+    const query = url.searchParams.get('query')?.toString();
 
     return {
+        addEntry,
+        journal,
         query,
-        searchResult: data
+    }
+}
+
+export const actions: Actions = {
+    addFoodItem: async (event) => {
+        const body = Object.fromEntries(await event.request.formData());
+
+        const data = {
+            journal: body['journal'].toString(),
+            type: body['type'].toString(),
+            foodItem: body['foodItem'].toString(),
+            servings: +body['servings'].toString(),
+        };
+
+        try {
+            await event.locals.pb.collection('journalEntries').create(data);
+        } catch (err) {
+            console.log(err);
+            return { err: (err as ClientResponseError).data.message };
+        }
+
+        throw redirect(303, "/");
     }
 }
