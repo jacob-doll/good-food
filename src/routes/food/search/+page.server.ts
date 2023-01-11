@@ -1,4 +1,3 @@
-import type { FoodItem } from '$lib/types';
 import { redirect } from '@sveltejs/kit';
 import type { ClientResponseError } from 'pocketbase';
 import type { Actions, PageServerLoadEvent } from './$types';

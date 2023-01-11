@@ -44,7 +44,10 @@
 				<li class="menu-title">
 					<span>Food</span>
 				</li>
-				<li><a href="/search">Search</a></li>
+				<li><a href="/food/search">Search</a></li>
+				{#if data.user?.admin}
+					<li><a href="/food/addItem">Add Food Item</a></li>
+				{/if}
 				{#if data.user}
 					<li class="menu-title">
 						<span>Profile</span>
