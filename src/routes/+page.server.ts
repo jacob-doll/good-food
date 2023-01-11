@@ -22,6 +22,7 @@ export async function load(event: PageServerLoadEvent) {
     });
 
     return {
+        title: 'Journal',
         goals: {
             calories: goals.calories,
             protein: goals.protein,

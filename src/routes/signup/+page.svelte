@@ -1,5 +1,5 @@
-<form method="POST" class="form-control mx-auto gap-2 sm:w-full lg:w-1/3 pt-4">
-	<h1>Sign-Up</h1>
+<form method="POST" class="form-control gap-2 pt-4 px-4 md:w-1/2 md:mx-auto">
+	<h1 class="text-3xl text-center">Sign-Up</h1>
 	<input class="input input-bordered" name="username" placeholder="Username" required={true} />
 	<input class="input input-bordered" name="email" placeholder="Email" required={true} />
 	<input

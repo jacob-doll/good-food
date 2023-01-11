@@ -11,6 +11,7 @@ export async function load(event: PageServerLoadEvent) {
     const query = url.searchParams.get('query')?.toString();
 
     return {
+        title: 'Search',
         addEntry,
         journal,
         query,

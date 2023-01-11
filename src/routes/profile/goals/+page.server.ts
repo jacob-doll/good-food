@@ -1,11 +1,12 @@
 import { error } from '@sveltejs/kit';
+import type { ClientResponseError } from 'pocketbase';
 import type { Actions, PageServerLoadEvent } from './$types';
 
 export async function load(event: PageServerLoadEvent) {
     const goals = await event.locals.pb.collection('goals').getFirstListItem(`user="${event.locals.user?.id}"`);
 
     return {
-        user: event.locals.user,
+        title: 'Goals',
         goals: {
             calories: goals.calories,
             protein: goals.protein,
@@ -26,12 +27,11 @@ export const actions: Actions = {
             fat: body.fat.toString(),
         };
 
-
         try {
             const goals = await event.locals.pb.collection('goals').getFirstListItem(`user="${event.locals.user?.id}"`);
             await event.locals.pb.collection('goals').update(goals.id, data);
         } catch (err) {
-            throw error(500, 'Something went wrong logging in');
+            return { msg: (err as ClientResponseError).message }
         }
     }
 };

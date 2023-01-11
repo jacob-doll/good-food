@@ -1,5 +1,11 @@
 import { error, redirect } from '@sveltejs/kit';
-import type { Actions } from './$types';
+import type { Actions, PageServerLoadEvent } from './$types';
+
+export async function load(_: PageServerLoadEvent) {
+    return {
+        title: 'Login',
+    }
+}
 
 export const actions: Actions = {
     default: async (event) => {
