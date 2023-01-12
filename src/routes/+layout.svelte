@@ -45,6 +45,7 @@
 					<span>Food</span>
 				</li>
 				<li><a href="/food/search">Search</a></li>
+				<li><a href="/food/scanBarCode">Scan Bar Code</a></li>
 				{#if data.user?.admin}
 					<li><a href="/food/addItem">Add Food Item</a></li>
 				{/if}

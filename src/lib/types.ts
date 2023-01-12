@@ -9,6 +9,7 @@ export interface FoodItem {
     brandOwner: string;
     description: string;
     shortDescription: string;
+    gtinUpc: string;
     ingredients: string;
     brandedFoodCategory: string;
     servingSize: number;
@@ -21,13 +22,13 @@ export interface FoodItem {
     cholesterol: number;
     sodium: number;
     carbohydrates: number;
+    fiber: number;
     sugars: number;
     protein: number;
     calcium: number;
     iron: number;
     potassium: number;
     calories: number;
-    fiber: number;
 }
 
 export interface FoodItemResult {
